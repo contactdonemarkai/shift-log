@@ -18,6 +18,12 @@ jobs:
         with:
           go-version: '1.24'
       - id: tests
+        env:
+          SKIP_CLAUDE_INTEGRATION: '1'
+          SKIP_CODEX_INTEGRATION: '1'
+          SKIP_GEMINI_INTEGRATION: '1'
+          SKIP_OPENCODE_INTEGRATION: '1'
+          SKIP_COPILOT_INTEGRATION: '1'
         run: |
           mkdir -p .constat/check-report
           go test -json ./... > .constat/check-report/raw.json
