@@ -26,6 +26,7 @@ jobs:
           SKIP_COPILOT_INTEGRATION: '1'
         run: |
           mkdir -p .constat/check-report
+          CGO_ENABLED=0 go build -o shiftlog .
           go test -json ./... > .constat/check-report/raw.json
       - if: always() && steps.tests.conclusion != 'skipped'
         run: go run .github/scripts/constat-go-report.go .constat/check-report/raw.json .constat/check-report/checks.json
